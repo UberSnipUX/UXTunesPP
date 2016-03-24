@@ -1,0 +1,143 @@
+﻿<Page
+    x:Class="TunesPP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TunesPP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#FF1A1A1A">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="165*"/>
+            <ColumnDefinition Width="276*"/>
+            <ColumnDefinition Width="165*"/>
+        </Grid.ColumnDefinitions>
+        <RelativePanel x:Name="panelNav" Grid.Column="0">
+            <Grid RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" RowSpan="2"  Background="#FF262626">
+
+                    <ListView ItemsSource="{x:Bind CategoryList.Items}" ScrollViewer.VerticalScrollBarVisibility="Hidden" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="rect_bg_container" Margin="0,40,0,0">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="local:CATEGORY_ITEM">
+                                <ListViewItem BorderBrush="#FF801C1C" BorderThickness="5,0,0,0">
+                                    <RelativePanel BorderThickness="0,0,0,0">
+                                        <TextBlock x:Name="track_lv_item_trackname3" Foreground="White" Text="{x:Bind Title}" Margin="0" />
+                                    </RelativePanel>
+                                </ListViewItem>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        
+                        <!--<ListViewItem BorderBrush="#FF801C1C" BorderThickness="0,0,0,0" Background="#FF252525">
+                            <RelativePanel>
+                                <TextBlock x:Name="track_lv_item_trackname4" Foreground="White" Text="Rap" Margin="5,0,0,0" />
+                            </RelativePanel>
+                        </ListViewItem>
+                        <ListViewItem BorderBrush="#FF801C1C" BorderThickness="0,0,0,0" Background="#FF252525">
+                            <RelativePanel>
+                                <TextBlock x:Name="track_lv_item_trackname5" Foreground="White" Text="Pop" Margin="5,0,0,0" />
+                            </RelativePanel>
+                        </ListViewItem>
+                        <ListViewItem BorderBrush="#FF801C1C" BorderThickness="0,0,0,0" Background="#FF252525">
+                            <RelativePanel>
+                                <TextBlock x:Name="track_lv_item_trackname6" Foreground="White" Text="Electric" Margin="5,0,0,0" />
+                            </RelativePanel>
+                        </ListViewItem>
+                        <ListViewItem BorderBrush="#FF801C1C" BorderThickness="0,0,0,0" Background="#FF252525">
+                            <RelativePanel>
+                                <TextBlock Foreground="White" Text="Business" Margin="5,0,0,0" />
+                            </RelativePanel>
+                        </ListViewItem>
+                        <ListViewItem BorderBrush="#FF801C1C" BorderThickness="0,0,0,0" Background="#FF252525">
+                            <RelativePanel>
+                                <TextBlock Foreground="White" Text="Politics" Margin="5,0,0,0" />
+                            </RelativePanel>
+                        </ListViewItem>-->
+                    </ListView>
+
+                </Grid>
+            </Grid>
+        </RelativePanel>
+
+        <RelativePanel Grid.Column="1">
+            <Grid RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="67*"/>
+                    <RowDefinition Height="113*"/>
+                </Grid.RowDefinitions>
+
+
+                <RelativePanel Grid.Row="0">
+                    <Image x:Name="image" Source="Assets/kbustwall.jpg" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Stretch="UniformToFill"/>
+                    
+                    <TextBlock RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" Text="K. Bust - Don't wanna try" Foreground="Black" Margin="0,0,7,0" FontWeight="Bold" />
+                    <Rectangle RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Margin="0,0,0.333,-5">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF1A1A1A" Offset="1"/>
+                                <GradientStop Color="Transparent"/>
+                                <GradientStop Color="#993E3E3E" Offset="0.814"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </RelativePanel>
+
+                <RelativePanel Grid.Row="1">
+                    <GridView RelativePanel.AlignHorizontalCenterWithPanel="True" ItemsSource="{x:Bind TrackList.Tracks}"  ScrollViewer.VerticalScrollBarVisibility="Hidden" Padding="15,10,10,5">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="local:UBERSNIP_TRACK">
+                                <RelativePanel Margin="10">
+                                    <StackPanel>
+                                        <Image Source="{x:Bind Image}" Width="100" />
+                                        <TextBlock Text="{x:Bind Artist}" Foreground="White" FontWeight="Bold" />
+                                        <TextBlock Text="{x:Bind Album}" Foreground="White" />
+                                    </StackPanel>
+                                </RelativePanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </RelativePanel>
+            </Grid>
+        </RelativePanel>
+
+        <RelativePanel x:Name="nowPlayingPanel"  Grid.Column="2">
+            <!--<Grid.RowDefinitions>
+                    <RowDefinition Height="53*"/>
+                    <RowDefinition Height="37*"/>
+                </Grid.RowDefinitions>-->
+            <Image x:Name="nowPlayingBanner" Height="{Binding ElementName=nowPlayingPanel, Path=ActualWidth, Mode=OneWay}" Width="{Binding ElementName=nowPlayingPanel, Path=ActualWidth, Mode=OneWay}" Source="Assets/leftistwall.jpg" Stretch="Fill" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+
+            <RelativePanel RelativePanel.Below="nowPlayingBanner" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                <Rectangle x:Name="rect_bg_container" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="ic_player_play_btn" Fill="#FFFF4040" Margin="0,0,0,-40" />
+                <Image Source="Assets/ic_rewind.png" RelativePanel.AlignVerticalCenterWith="ic_player_play_btn" RelativePanel.AlignLeftWithPanel="True" Width="20" Margin="20,10,0,0" />
+                <Image x:Name="ic_player_play_btn" RelativePanel.AlignHorizontalCenterWithPanel="True" Source="Assets/ic_play.png" Width="30" Margin="0,10,0,0" />
+                <Image RelativePanel.AlignVerticalCenterWith="ic_player_play_btn" RelativePanel.AlignRightWithPanel="True" Width="20" Source="Assets/ic_forward.png" Margin="0,10,20,0"/>
+                <Slider RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"  RelativePanel.Below="rect_bg_container" Padding="20,0" />
+                <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="rect_bg_container" Margin="0,40,0,0">
+                    <ListViewItem BorderBrush="#FF801C1C" BorderThickness="0">
+                        <RelativePanel BorderThickness="3,0,0,0">
+                            <TextBlock x:Name="track_lv_item_tracknum" Text="1." Foreground="White" />
+                            <TextBlock x:Name="track_lv_item_trackname" RelativePanel.RightOf="track_lv_item_tracknum" Foreground="White" Text="Don't wanna try" Margin="5,0,0,0" />
+                            <TextBlock x:Name="track_lv_item_artist" RelativePanel.Below="track_lv_item_trackname" RelativePanel.AlignLeftWith="track_lv_item_trackname" Text="K. Bust" Foreground="White" Margin="5,0,0,0" />
+                        </RelativePanel>
+                    </ListViewItem>
+                    <ListViewItem BorderBrush="#FF801C1C" BorderThickness="5,0,0,0" Background="#FF252525">
+                        <RelativePanel>
+                            <TextBlock x:Name="track_lv_item_tracknum2" Text="2." Foreground="White" />
+                            <TextBlock x:Name="track_lv_item_trackname2" RelativePanel.RightOf="track_lv_item_tracknum2" Foreground="White" Text="Bombshell" Margin="5,0,0,0" />
+                            <TextBlock x:Name="track_lv_item_artist2" RelativePanel.Below="track_lv_item_trackname2" RelativePanel.AlignLeftWith="track_lv_item_trackname2" Text="Leftist" Foreground="White" Margin="5,0,0,0" />
+                        </RelativePanel>
+                    </ListViewItem>
+                </ListView>
+            </RelativePanel>
+
+        </RelativePanel>
+
+    </Grid>
+</Page>
